@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch(baseURL)
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`Error! Status: ${response.status}`);
           }
           return response.url;
         })
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  fetchAndAppendImages(gallery, 4); //initial fetch
+  fetchAndAppendImages(gallery, 4); 
 
   fetchButton.addEventListener("click", function (temp = tracer) {
     gallery.innerHTML = ""; 
@@ -61,19 +61,4 @@ document.addEventListener("DOMContentLoaded", function () {
   addMoreButton.addEventListener("click", function () {
     fetchAndAppendImages(gallery, 4);
   });
-
-  function toggleAddMoreButtonVisibility() {
-    const lastImage = document.querySelector(".photo-item:last-child");
-    const lastImageBottom = lastImage.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-
-    if (lastImageBottom <= windowHeight) {
-      addMoreButton.style.display = "block";
-    } else {
-      addMoreButton.style.display = "none";
-    }
-  }
-
-  window.addEventListener("scroll", toggleAddMoreButtonVisibility);
-  toggleAddMoreButtonVisibility();
 });

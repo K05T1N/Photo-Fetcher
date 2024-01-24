@@ -88,11 +88,11 @@ img{
     background-color: rgba(0, 0, 0, 0.7);
     padding:0.5rem;
     box-sizing: border-box;
-    transform: translateY(-5%);
-    -webkit-transform: translateY(-5%);
-    -moz-transform: translateY(-5%);
-    -ms-transform: translateY(-5%);
-    -o-transform: translateY(-5%);
+    transform: translateY(-6%);
+    -webkit-transform: translateY(-6%);
+    -moz-transform: translateY(-6%);
+    -ms-transform: translateY(-6%);
+    -o-transform: translateY(-6%);
 }
 .small-text{
     font-size: 0.75rem;
