@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Fetcher</title>
     <link rel="stylesheet" href="Retrieve.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="">
-        <div class="">
+    <div class="maincont">
+        <div class="cntrl">
             <div>
                 <input type="checkbox" id="GrayToggle">
                 <label for="GrayToggle">Make photos grayscale</label>
             </div>
             <div>
-                <button>Fetch New Photos</button>            
+                <button id="fetches">Fetch New Photos</button>            
             </div>
-            <div class=""></div>
+            <div class="gallery" id="gallery"></div>
+            <div id="morephotos">
+                <button>More Photos</button>
+            </div>
         </div>
     </div>
     <script src="Take.js"></script>    
