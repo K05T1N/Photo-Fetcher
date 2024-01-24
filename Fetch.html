@@ -11,18 +11,21 @@
 </head>
 <body>
     <div class="maincont">
+        <div class="titular">Photo Fetcher</div>
         <div class="cntrl">
-            <span>
-                <input type="checkbox" id="GrayToggle">
-                <label for="GrayToggle">Make photos grayscale</label>
+            <span id="graytoggle">
+                <label for="graybutton" class="switch">
+                <input type="checkbox" id="graybutton">
+                <span class="slider round"></span>
+            </label><label for="graybutton">Make photos grayscale</label>
             </span>
-            <span>
-                <button id="fetches">Fetch New Photos</button>            
+            <span id="refetch">
+                <button class="refetch">Fetch New Photos</button>            
             </span>
         </div>
         <div id="gallery"></div>
         <div id="morephotos">
-            <button>More Photos</button>
+            <button class="morephotos">More Photos</button>
         </div>
     </div>
     <script src="Take.js"></script>    

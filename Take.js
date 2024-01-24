@@ -1,47 +1,76 @@
-const photoContainer = document.getElementById("gallery");
-const toggleSwitch = document.getElementById("GrayToggle");
-const loadMoreBtn = document.getElementById("morephotos");
+document.addEventListener("DOMContentLoaded", function () {
+  const baseURL = "https://picsum.photos/367/300";
+  const gallery = document.getElementById("gallery");
+  const fetchButton = document.getElementById("refetch");
+  const greyscaleToggle = document.getElementById("graytoggle");
+  const addMoreButton = document.getElementById("morephotos");
 
-async function fetchPhoto(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch photo");
+  function fetchAndAppendImages(container, count) {
+    for (let i = 0; i < count; i++) {
+      fetch(baseURL)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.url;
+        })
+        .then((imageUrl) => {
+          const photoItem = document.createElement("div");
+          photoItem.classList.add("photo");
+
+          const imageElement = document.createElement("img");
+          imageElement.src = imageUrl;
+
+          const overlay = document.createElement("div");
+          overlay.classList.add("overlay");
+
+          const line1 = document.createElement("div");
+          line1.innerText = "Lucas Budimaier";
+
+          const line2 = document.createElement("div");
+          line2.innerText = "https://unsplash.com/photos/pwaaqfoMibl";
+          line2.classList.add("small-text"); 
+
+          overlay.appendChild(line1);
+          overlay.appendChild(line2);
+
+          photoItem.appendChild(imageElement);
+          photoItem.appendChild(overlay);
+          container.appendChild(photoItem);
+        })
+        .catch((error) => {
+          console.error("Error fetching image:", error);
+        });
     }
-    const photoUrl = response.url;
-    return photoUrl;
-  } catch (error) {
-    console.error(error);
   }
-}
 
-async function fetchAndDisplayPhotos() {
-  photoContainer.innerHTML = "";
+  fetchAndAppendImages(gallery, 4); //initial fetch
 
-  try {
-    for (let i = 0; i < 4; i++) {
-      const photoUrl = await fetchPhoto("https://picsum.photos/367/367");
-      const img = document.createElement("img");
-      img.src = photoUrl;
-      img.alt = "Random Photo";
-      photoContainer.appendChild(img);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function applyGrayscale() {
-  const images = photoContainer.querySelectorAll("img");
-  images.forEach((img) => {
-    if (toggleSwitch.checked) {
-      img.classList.add("grayscale");
-    } else {
-      img.classList.remove("grayscale");
-    }
+  fetchButton.addEventListener("click", function () {
+    gallery.innerHTML = ""; //remove current images
+    fetchAndAppendImages(gallery, 4);
   });
-}
 
-fetchAndDisplayPhotos();
-toggleSwitch.addEventListener("click", applyGrayscale);
-loadMoreBtn.addEventListener("click", fetchAndDisplayPhotos);
+  greyscaleToggle.addEventListener("change", function () {
+    gallery.classList.toggle("greyscale", greyscaleToggle.checked);
+  });
+
+  addMoreButton.addEventListener("click", function () {
+    fetchAndAppendImages(gallery, 4);
+  });
+
+  function toggleAddMoreButtonVisibility() {
+    const lastImage = document.querySelector(".photo-item:last-child");
+    const lastImageBottom = lastImage.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if (lastImageBottom <= windowHeight) {
+      addMoreButton.style.display = "block";
+    } else {
+      addMoreButton.style.display = "none";
+    }
+  }
+
+  window.addEventListener("scroll", toggleAddMoreButtonVisibility);
+  toggleAddMoreButtonVisibility();
+});
