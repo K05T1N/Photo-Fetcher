@@ -15,7 +15,12 @@ body{
     transform: translate(-50%);
 }
 #gallery{
-    
+  position: relative; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: fit-content;
 }
 img{
     margin: 8px;
@@ -26,10 +31,8 @@ img{
     width: 750px;
 }
 #GrayToggle{
-    position: relative;
-    left: 8px;
+    float: left;
 }
 #fetches{
-    position: relative;
-    right: 8px;
+    float: right;
 }
