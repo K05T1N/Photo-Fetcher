@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const fetchButton = document.getElementById("refetch");
   const greyscaleToggle = document.getElementById("graytoggle");
   const addMoreButton = document.getElementById("morephotos");
+  let tracer = 0;
 
   function fetchAndAppendImages(container, count) {
     for (let i = 0; i < count; i++) {
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
           photoItem.appendChild(imageElement);
           photoItem.appendChild(overlay);
           container.appendChild(photoItem);
+          tracer += 1;
         })
         .catch((error) => {
           console.error("Error fetching image:", error);
@@ -46,9 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetchAndAppendImages(gallery, 4); //initial fetch
 
-  fetchButton.addEventListener("click", function () {
-    gallery.innerHTML = ""; //remove current images
-    fetchAndAppendImages(gallery, 4);
+  fetchButton.addEventListener("click", function (temp = tracer) {
+    gallery.innerHTML = ""; 
+    fetchAndAppendImages(gallery, tracer);
+    tracer -=temp;
   });
 
   greyscaleToggle.addEventListener("change", function () {
