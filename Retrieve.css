@@ -7,10 +7,29 @@ body{
      "wdth" 100;
 }
 .maincont{
+    width: 50vmax;
     max-width: 750px;
     position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%);
+}
+#gallery{
     
 }
 img{
     margin: 8px;
+    width: 35vmin;
+    max-width: 350px;
+}
+.cntrl{
+    width: 750px;
+}
+#GrayToggle{
+    position: relative;
+    left: 8px;
+}
+#fetches{
+    position: relative;
+    right: 8px;
 }
