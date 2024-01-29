@@ -48,10 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetchAndAppendImages(gallery, 4); 
 
-  fetchButton.addEventListener("click", function (temp = tracer) {
+  fetchButton.addEventListener("click", function (temp = 0) {
+    temp = tracer;
     gallery.innerHTML = ""; 
     fetchAndAppendImages(gallery, tracer);
-    tracer -=temp;
+    tracer -= temp;
   });
 
   greyscaleToggle.addEventListener("change", function () {
