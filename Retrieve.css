@@ -13,6 +13,10 @@ body{
     left: 50%;
     right: 50%;
     transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
 }
 #gallery{
   position: relative; 
@@ -27,7 +31,6 @@ body{
 }
 img{
     width: fit-content;
-    overflow: hidden;
 }
 .cntrl{
     width: 750;
@@ -73,6 +76,7 @@ img{
 }
 .photo{
     position: relative;
+    max-height: 300px ;
 }
 .greyscale{
     filter: grayscale(100%);
@@ -88,11 +92,6 @@ img{
     background-color: rgba(0, 0, 0, 0.7);
     padding:0.5rem;
     box-sizing: border-box;
-    transform: translateY(-6%);
-    -webkit-transform: translateY(-6%);
-    -moz-transform: translateY(-6%);
-    -ms-transform: translateY(-6%);
-    -o-transform: translateY(-6%);
 }
 .small-text{
     font-size: 0.75rem;

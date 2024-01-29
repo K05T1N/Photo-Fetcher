@@ -16,19 +16,19 @@ document.addEventListener("DOMContentLoaded", function () {
           return response.url;
         })
         .then((imageUrl) => {
-          const photoItem = document.createElement("div");
+          const photoItem = document.createElement("span");
           photoItem.classList.add("photo");
 
           const imageElement = document.createElement("img");
           imageElement.src = imageUrl;
 
-          const overlay = document.createElement("div");
+          const overlay = document.createElement("span");
           overlay.classList.add("overlay");
 
           const line1 = document.createElement("div");
           line1.innerText = "Lucas Budimaier";
 
-          const line2 = document.createElement("div");
+          const line2 = document.createElement("div"); 
           line2.innerText = "https://unsplash.com/photos/pwaaqfoMibl";
           line2.classList.add("small-text"); 
 
