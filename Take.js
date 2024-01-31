@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
             const line1 = document.createElement("div");
             line1.innerText = response.author;
+            line1.classList.add("big-text");
   
             const line2 = document.createElement("div"); 
             line2.innerText = response.url;
