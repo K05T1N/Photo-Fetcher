@@ -13,32 +13,41 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!response.ok) {
             throw new Error(`Error! Status: ${response.status}`);
           }
-          return response.url;
+          return response;
         })
-        .then((imageUrl) => {
+        .then((data) => {
+
           const photoItem = document.createElement("span");
           photoItem.classList.add("photo");
 
           const imageElement = document.createElement("img");
-          imageElement.src = imageUrl;
+          imageElement.src = data.url;
+          let newURL = `https://picsum.photos/id/${data.headers.get("picsum-id")}/info`;
 
-          const overlay = document.createElement("span");
-          overlay.classList.add("overlay");
-
-          const line1 = document.createElement("div");
-          line1.innerText = "Lucas Budimaier";
-
-          const line2 = document.createElement("div"); 
-          line2.innerText = "https://unsplash.com/photos/pwaaqfoMibl";
-          line2.classList.add("small-text"); 
-
-          overlay.appendChild(line1);
-          overlay.appendChild(line2);
-
-          photoItem.appendChild(imageElement);
-          photoItem.appendChild(overlay);
-          container.appendChild(photoItem);
-          tracer += 1;
+          fetch(newURL)
+          .then(response => response.text()) 
+          .then((dataStr) => {
+            
+            let response = JSON.parse(dataStr);
+            console.log(response)
+            const overlay = document.createElement("span");
+            overlay.classList.add("overlay");
+  
+            const line1 = document.createElement("div");
+            line1.innerText = response.author;
+  
+            const line2 = document.createElement("div"); 
+            line2.innerText = response.url;
+            line2.classList.add("small-text"); 
+  
+            overlay.appendChild(line1);
+            overlay.appendChild(line2);
+  
+            photoItem.appendChild(imageElement);
+            photoItem.appendChild(overlay);
+            container.appendChild(photoItem);
+            tracer += 1;
+          })
         })
         .catch((error) => {
           console.error("Error fetching image:", error);

@@ -30,6 +30,9 @@ body{
   grid-template-columns: auto auto;
 }
 img{
+    max-height: 300px;
+    max-width: 367px;
+    max-height: fit-content;
     width: fit-content;
 }
 .cntrl{
